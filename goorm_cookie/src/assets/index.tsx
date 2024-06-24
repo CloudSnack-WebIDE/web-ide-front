@@ -8,7 +8,7 @@ export const IdIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     fill="#ffffff"
     {...props}
   >
-    <path d="M234 684q51-39 114-61.5T480 600q69 0 132 22.5T726 684q35-41 54.5-93T800 480q0-133-93.5-226.5T480 160q-133 0-226.5 93.5T160 480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340 380q0-59 40.5-99.5T480 240q59 0 99.5 40.5T620 380q0 59-40.5 99.5T480 520Zm0 360q-83 0-156-31.5T197 757q-54-54-85.5-127T80 480q0-83 31.5-156T197 197q54-54 127-85.5T480 80q83 0 156 31.5T763 197q54 54 85.5 127T880 480q0 83-31.5 156T763 763q-54 54-127 85.5T480 880Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480 680q-53 0-100 15.5T294 740q39 29 86 44.5T480 800Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/>
+    <path d="M234 684q51-39 114-61.5T480 600q69 0 132 22.5T726 684q35-41 54.5-93T800 480q0-133-93.5-226.5T480 160q-133 0-226.5 93.5T160 480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340 380q0-59 40.5-99.5T480 240q59 0 99.5 40.5T620 380q0 59-40.5 99.5T480 520Zm0 360q-83 0-156-31.5T197 757q-54-54-85.5-127T80 480q0-83 31.5-156T197 197q54-54 127-85.5T480 80q83 0 156 31.5T763 197q54 54 85.5 127T880 480q0 83-31.5 156T763 763q-54 54-127 85.5T480 880Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480 680q-53 0-100 15.5T294 740q39 29 86 44.5T480 800Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
   </svg>
 );
 
@@ -38,7 +38,9 @@ export const EmailIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 // PasswordIcon 컴포넌트
-export const PasswordIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const PasswordIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -87,13 +89,25 @@ export const RoomIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     fill="#ffffff"
     {...props}
   >
-    <rect x="16" y="2" width="45" height="60" rx="2" ry="2" stroke="#ffffff" strokeWidth="4" fill="none" />
+    <rect
+      x="16"
+      y="2"
+      width="45"
+      height="60"
+      rx="2"
+      ry="2"
+      stroke="#ffffff"
+      strokeWidth="4"
+      fill="none"
+    />
     <circle cx="50" cy="32" r="4" fill="#ffffff" />
   </svg>
 );
 
 // 언어 아이콘
-export const LanguageIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const LanguageIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -102,8 +116,20 @@ export const LanguageIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => 
     fill="none"
     {...props}
   >
-    <circle cx="12" cy="12" r="10" stroke="#ffffff" strokeWidth="1.5" fill="none" />
-    <path d="M2 12h20M12 2c2.5 3 4 7 4 10s-1.5 7-4 10c-2.5-3-4-7-4-10s1.5-7 4-10z" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+    <circle
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="#ffffff"
+      strokeWidth="1.5"
+      fill="none"
+    />
+    <path
+      d="M2 12h20M12 2c2.5 3 4 7 4 10s-1.5 7-4 10c-2.5-3-4-7-4-10s1.5-7 4-10z"
+      stroke="#ffffff"
+      strokeWidth="1.5"
+      fill="none"
+    />
   </svg>
 );
 

@@ -1,33 +1,33 @@
 .dashboard-grid {
-    display : flex;
-    height: calc(100% - 80px);
-    padding-top: 80px;
-  }
-  
-  .code-editor-wrapper, .chat-component-wrapper {
-    flex: 1; 
-    display: flex;
-    flex-direction: column;
-  }
-  
+  display: flex;
+  height: calc(100% - 80px);
+  padding-top: 80px;
+}
 
-  #monaco-editor {
-    flex: 3;
-  }
-  
-  #ide_out_put {
-    flex: 1; 
-  }
-  
-  .userList {
-    flex: 2; 
-  }
-  
-  .chatContainer {
-    flex: 2;
-  }
+.code-editor-wrapper,
+.chat-component-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
-  html,body {
-    height: 100%
-  }
-  
+#monaco-editor {
+  flex: 3;
+}
+
+#ide_out_put {
+  flex: 1;
+}
+
+.userList {
+  flex: 2;
+}
+
+.chatContainer {
+  flex: 2;
+}
+
+html,
+body {
+  height: 100%;
+}

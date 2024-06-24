@@ -1,20 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CODE in the bus</title>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>
+      // 카카오 SDK 초기화
+      Kakao.init('6a03fce7bb93ba222014f1c5ab7c5069'); // 카카오 개발자 사이트에서 발급받은 JavaScript 키
+    </script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CODE in the bus</title>
-  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script>
-    // 카카오 SDK 초기화
-    Kakao.init('6a03fce7bb93ba222014f1c5ab7c5069'); // 카카오 개발자 사이트에서 발급받은 JavaScript 키
-  </script>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/index.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
 </html>

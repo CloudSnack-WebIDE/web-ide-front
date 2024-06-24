@@ -1,85 +1,85 @@
 .projects-grid {
-    display : flex;
-    height: calc(100% - 80px);
-    padding-top: 80px;
-  }
-  
+  display: flex;
+  height: calc(100% - 80px);
+  padding-top: 80px;
+}
+
 .userListContainer {
-    background-color: white; 
-    border-bottom: 1px solid #ccc;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
 }
 
 .chatContainer {
-    background-color: white; 
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .userList {
-    flex: 1;
-    padding: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+  flex: 1;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
 .userEntry {
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: white; 
-    color: black; 
-    border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
 }
 
 .chatContainer {
-    flex: 1;
-    overflow-y: auto;
-    background-color: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+  flex: 1;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
 .messages {
-    height: calc(100% - 50px);
-    overflow-y: auto;
-    margin: 0;
-    padding: 5px;
-    list-style: none;
-    background: white; 
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: calc(100% - 50px);
+  overflow-y: auto;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .messageItem p {
-    margin: 0;
-    padding: 2px 0;
-    color: black; 
+  margin: 0;
+  padding: 2px 0;
+  color: black;
 }
 
 .messageForm {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .messageInput {
-    flex-grow: 1;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
 }
 
 .sendButton {
-    padding: 10px 20px;
-    border-radius: 20px;
-    background-color: #004bfa; 
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #004bfa;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
