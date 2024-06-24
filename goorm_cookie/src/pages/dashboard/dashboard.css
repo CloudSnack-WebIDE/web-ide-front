@@ -1,0 +1,33 @@
+.dashboard-grid {
+  display: flex;
+  height: calc(100% - 80px);
+  padding-top: 80px;
+}
+
+.code-editor-wrapper,
+.chat-component-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#monaco-editor {
+  flex: 3;
+}
+
+#ide_out_put {
+  flex: 1;
+}
+
+.userList {
+  flex: 2;
+}
+
+.chatContainer {
+  flex: 2;
+}
+
+html,
+body {
+  height: 100%;
+}

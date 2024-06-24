@@ -1,0 +1,31 @@
+#monaco-editor {
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 8px;
+    height: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+    padding-top: 5px
+}
+
+#ide_out_put {
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    height: 290px;
+    
+}
+
+#ide_out_put h3,pre{
+    margin-left: 25px;
+    color: black;
+}
+
+.compiling_box {
+    margin-top: 18px;
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+}

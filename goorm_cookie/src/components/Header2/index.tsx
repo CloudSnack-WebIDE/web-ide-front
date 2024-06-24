@@ -1,5 +1,9 @@
 import styled from 'styled-components';
+import { ProjectInfoType } from 'pages/dashboard/dashboard';
 
+type Header2Type = {
+  projectInfo: ProjectInfoType | null
+}
 
 const Container = styled.div`
   width: 100%;
@@ -12,6 +16,7 @@ const Container = styled.div`
   left: -0.5rem;
   margin-right: 42rem;
   margin-top: 15px;
+  z-index: 100;
   `;
 
 const Logo = styled.img`
@@ -19,20 +24,16 @@ const Logo = styled.img`
     height: auto;
 `;
 
-const Line = styled.div`
-  height: 2px;
-  width: 100%;
-  background-color: white;
-  margin : auto 40px auto 20px;
-`;
 
-export default function Header() {
+export default function Header2({
+  projectInfo
+}: Header2Type) {
   return (
     <Container>
-      <a href="/">
+      <a href="/projects">
         <Logo src="/CODEinthebus-logo.png" alt="CODEinthebus logo" />
-      </a>  
-      <Line />
+      </a>
+      {projectInfo?.name}
     </Container>
   )
 }
