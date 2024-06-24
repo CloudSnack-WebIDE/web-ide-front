@@ -1,4 +1,4 @@
-FROM krmp-d2hub-idock.9rum.cc/goorm/node:16
+FROM node:20-bookworm
 WORKDIR /usr/src/app
 COPY goorm_cookie/ ./
 RUN npm ci
