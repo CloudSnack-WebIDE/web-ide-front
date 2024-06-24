@@ -10,7 +10,10 @@ import C_Room from './pages/C_Room/C_Room';
 import Dashboard from './pages/dashboard/dashboard';
 import Projects from './pages/Projects';
 import ReactDOM from 'react-dom/client';
+import axios from "axios";
 
+axios.defaults.baseURL = 'https://kd438d3d42851a.user-app.krampoline.com';
+axios.defaults.withCredentials = true;
 
 const PrivateRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
   const { isLoggedIn } = useAuth();

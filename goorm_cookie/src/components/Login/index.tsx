@@ -6,6 +6,7 @@ import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebaseAuth';
 import './styles.css';
 import "../../styles/commonStyles.css";
+import api from '../../api/api';
 
 // 카카오 API 응답 타입 정의
 interface KakaoAuthResponse {
@@ -79,28 +80,22 @@ const Login: React.FC = () => {
         setError('');
 
         try {
-            console.log('아이디:', username);
-            console.log('비밀번호:', password);
-
             // 실제 로그인 API 호출 예시
-            // const response = await api.login({ username, password });
-            // if (response.success) {
-            //     login();
-            //     navigate('/');
-            // } else {
-            //     setError('로그인에 실패했습니다. 사용자명 또는 비밀번호를 확인하세요.');
-            // }
-
-            // 로그인 성공 시 로그인 상태 업데이트
-            login();
-            if (autoLogin) {
-                localStorage.setItem('username', username);
-                localStorage.setItem('password', password);
+            const response = await api.post('/login', { email: username, password });
+            if (response.data.result_code === "200") {
+                const { access_token, refresh_token } = response.data.data;
+                login();
+                if (autoLogin) {
+                    localStorage.setItem('accessToken', access_token);
+                    localStorage.setItem('refreshToken', refresh_token);
+                } else {
+                    sessionStorage.setItem('accessToken', access_token);
+                    sessionStorage.setItem('refreshToken', refresh_token);
+                }
+                navigate('/projects');
             } else {
-                sessionStorage.setItem('username', username);
-                sessionStorage.setItem('password', password);
+                setError('로그인에 실패했습니다. 사용자명 또는 비밀번호를 확인하세요.');
             }
-            navigate('/projects');
         } catch (err) {
             setError('로그인 중 오류가 발생했습니다.');
         }
