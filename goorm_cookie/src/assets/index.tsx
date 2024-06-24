@@ -77,34 +77,34 @@ export const PasswordIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => 
   </svg>
 );
 
-//방 만들기 icon
+// 방 만들기 icon
 export const RoomIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 64 64"
-      width="24"
-      height="24"
-      fill="currentColor"
-      {...props}
-    >
-      <rect x="16" y="2" width="32" height="60" rx="2" ry="2" stroke="currentColor" fill="none" />
-      <circle cx="44" cy="32" r="2" fill="currentColor" />
-    </svg>
-  );
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="11 0 65 64"
+    width="40"
+    height="24"
+    fill="#ffffff"
+    {...props}
+  >
+    <rect x="16" y="2" width="45" height="60" rx="2" ry="2" stroke="#ffffff" strokeWidth="4" fill="none" />
+    <circle cx="50" cy="32" r="4" fill="#ffffff" />
+  </svg>
+);
 
-//언어 아이콘
+// 언어 아이콘
 export const LanguageIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      fill="currentColor"
-      {...props}
-    >
-      <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" />
-      <path d="M2 12h20M12 2c2.5 3 4 7 4 10s-1.5 7-4 10c-2.5-3-4-7-4-10s1.5-7 4-10z" stroke="currentColor" fill="none" />
-    </svg>
-  );
-  
-  export default LanguageIcon;
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="none"
+    {...props}
+  >
+    <circle cx="12" cy="12" r="10" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+    <path d="M2 12h20M12 2c2.5 3 4 7 4 10s-1.5 7-4 10c-2.5-3-4-7-4-10s1.5-7 4-10z" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+export default LanguageIcon;
