@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { EmailIcon, PasswordIcon } from '../../assets';
+import { IdIcon, PasswordIcon } from '../../assets';
 import { useAuth } from '../../contexts/AuthContext';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebaseAuth';
@@ -159,7 +159,7 @@ const Login: React.FC = () => {
                     <div className="form-group">
                         <label htmlFor="username"></label>
                         <div className="input-icon-container">
-                            <EmailIcon className="input-icon" />
+                            <IdIcon className="input-icon" />
                             <input
                                 type="text"
                                 id="username"
@@ -198,7 +198,7 @@ const Login: React.FC = () => {
                             <Link to="/forgot-password" className="links pass-link">비밀번호가 기억나지 않는다면?</Link>
                         </div>
                     </div>
-                    <button type="submit" disabled={loading}>
+                    <button type="submit" disabled={loading} className="Login-button">
                         {loading ? '로그인 중...' : '로그인'}
                     </button>
                     <div className="kakao-google-login-container">

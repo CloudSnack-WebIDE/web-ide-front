@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { EmailIcon, PasswordIcon } from '../../assets';
+import { EmailIcon, IdIcon, PasswordIcon } from '../../assets';
 import './styles.css';
 import "../../styles/commonStyles.css";
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
-    const [username] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -38,7 +38,7 @@ const Register: React.FC = () => {
         }
 
         try {
-            const response = await fetch('/api/uswers', {
+            const response = await fetch('/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,6 +70,21 @@ const Register: React.FC = () => {
         <div className="register-container">
             <h2>회원가입</h2>
             <form onSubmit={handleRegister}>
+                <div className="form-group">
+                    <label htmlFor="username"></label>
+                    <div className="input-icon-container">
+                        <IdIcon className="input-icon" />
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="아이디를 입력하세요"
+                            required 
+                        />
+                    </div>
+                </div>
                 <div className="form-group">
                     <label htmlFor="email"></label>
                     <div className="input-icon-container">
