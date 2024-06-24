@@ -49,7 +49,7 @@ declare global {
 }
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [autoLogin, setAutoLogin] = useState(false);
   const [error, setError] = useState('');
@@ -58,10 +58,10 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUsername = localStorage.getItem('username');
+    const savedEmail = localStorage.getItem('email');
     const savedPassword = localStorage.getItem('password');
-    if (savedUsername && savedPassword) {
-      setUsername(savedUsername);
+    if (savedEmail && savedPassword) {
+      setEmail(savedEmail);
       setPassword(savedPassword);
       handleLogin({ preventDefault: () => {} } as React.FormEvent);
     }
@@ -80,19 +80,19 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      const response = await api.post('/api/login', {
-        email: username,
-        password,
+      const response = await api.post('http://localhost:8080/api/login', {
+        email: email,
+        password: password,
       });
-      if (response.data.result_code === '200') {
+      if (response.data.result_code === '200 OK') {
         const { access_token, refresh_token } = response.data.data;
         login();
         if (autoLogin) {
-          localStorage.setItem('accessToken', access_token);
-          localStorage.setItem('refreshToken', refresh_token);
+          localStorage.setItem('access_token', access_token);
+          localStorage.setItem('refresh_token', refresh_token);
         } else {
-          sessionStorage.setItem('accessToken', access_token);
-          sessionStorage.setItem('refreshToken', refresh_token);
+          sessionStorage.setItem('access_token', access_token);
+          sessionStorage.setItem('refresh_token', refresh_token);
         }
         navigate('/projects');
       } else {
@@ -154,16 +154,16 @@ const Login: React.FC = () => {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label htmlFor="username"></label>
+            <label htmlFor="userEmail"></label>
             <div className="input-icon-container">
               <IdIcon className="input-icon" />
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="아이디를 입력하세요"
+                id="userEmail"
+                name="userEmail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="이메일을 입력하세요"
                 required
               />
             </div>

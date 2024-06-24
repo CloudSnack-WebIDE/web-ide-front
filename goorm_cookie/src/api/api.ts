@@ -1,14 +1,15 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://kd438d3d42851a.user-app.krampoline.com',
+  // baseURL: 'https://kd438d3d42851a.user-app.krampoline.com',
+  baseURL: 'http://localhost:8080',
 });
 
 api.interceptors.request.use(
   (config) => {
     const token =
-      localStorage.getItem('accessToken') ||
-      sessionStorage.getItem('accessToken');
+      localStorage.getItem('access_token') ||
+      sessionStorage.getItem('access_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -28,15 +29,25 @@ api.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken =
-        localStorage.getItem('refreshToken') ||
-        sessionStorage.getItem('refreshToken');
-      const response = await api.post('/auth/refresh', { token: refreshToken });
-      if (response.status === 200) {
-        const newAccessToken = response.data.accessToken;
-        localStorage.setItem('accessToken', newAccessToken);
-        api.defaults.headers.common['Authorization'] =
-          `Bearer ${newAccessToken}`;
-        return api(originalRequest);
+        localStorage.getItem('refresh_token') ||
+        sessionStorage.getItem('refresh_token');
+      if(refreshToken){
+        try{
+          originalRequest.headers.Authorization = `Bearer ${refreshToken}`;
+          const response = await axios(originalRequest);
+          if (response.status === 200) {
+            const newAccessToken = response.data.access_token
+            localStorage.setItem('access_Token', newAccessToken);
+            api.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+          }
+        }catch(error){
+          console.log(error);
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          sessionStorage.removeItem('access_token');
+          sessionStorage.removeItem('refresh_token');
+          window.location.href = '/login';
+        }
       }
     }
     return Promise.reject(error);

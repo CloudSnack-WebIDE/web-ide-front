@@ -23,7 +23,7 @@ const Register: React.FC = () => {
 
         // 비밀번호 길이 확인
         if (password.length < 6) {
-            setPasswordError('비밀번호는 6자 이상이어야 합니다.');
+            setPasswordError('비밀번호는 6자 이상이며 영문과 숫자가 혼합되어야 합니다.');
             valid = false;
         }
 
@@ -38,7 +38,7 @@ const Register: React.FC = () => {
         }
 
         try {
-            const response = await fetch('/api/users', {
+            const response = await fetch('http://localhost:8080/api/sign-up', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const Register: React.FC = () => {
                             name="username" 
                             value={username} 
                             onChange={(e) => setUsername(e.target.value)}
-                            placeholder="아이디를 입력하세요"
+                            placeholder="유저이름을 입력하세요"
                             required 
                         />
                     </div>
