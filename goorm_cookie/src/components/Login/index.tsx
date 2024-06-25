@@ -7,6 +7,7 @@ import { auth, provider } from '../../firebaseAuth';
 import './styles.css';
 import '../../styles/commonStyles.css';
 import api from '../../api/api';
+import { SERVER_URL } from 'constant/constant';
 
 // 카카오 API 응답 타입 정의
 interface KakaoAuthResponse {
@@ -80,7 +81,7 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      const response = await api.post('http://localhost:8080/api/login', {
+      const response = await api.post(SERVER_URL +'/api/login', {
         email: email,
         password: password,
       });

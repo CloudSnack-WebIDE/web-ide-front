@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { io, Socket } from 'socket.io-client';
+
 import styles from './ChatComponent.module.css';
 import { Client } from '@stomp/stompjs';
+import { SERVER_URL, WEBSOCKET_URL } from '../../constant/constant';
+import axios from 'axios';
 
-const socket: Socket = io('http://localhost:5173');
 
 const ChatComponent: React.FC = () => {
     const [message, setMessage] = useState<string>('');
@@ -12,11 +13,32 @@ const ChatComponent: React.FC = () => {
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
     const [stompClient, setStompClient] = useState<Client | null>(null);
+    const [currentUser, setCurrentUser] = useState<{id: number, name: string}|null>(null);
 
     useEffect(() => {
+        (async() => {
+            try {
+                const { data } = await axios.get(`${SERVER_URL}/api/user`);
+                const user = data.data;
+                console.log(user);
+                setCurrentUser({
+                    id: user.id,
+                    name: user.username
+                });
+            } catch (error) {
+                console.error('Failed to fetch current user:', error);
+            }
+        })();
+    }, []);
+
+    useEffect(() => {
+        if (!currentUser) return;
+
         const stomp = new Client({
-            brokerURL: 'ws://localhost:8080/ws',
-            connectHeaders: {},
+            brokerURL: WEBSOCKET_URL,
+            connectHeaders: {
+                Authorization: 'Bearer ' + sessionStorage.getItem("access_token")
+            },
             debug: (str: string) => {
                 console.log(str);
             },
@@ -24,34 +46,44 @@ const ChatComponent: React.FC = () => {
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
         });
-        setStompClient(stomp);
-
+        
         stomp.activate();
         stomp.onConnect = () => {
             console.log('WebSocket 연결이 열렸습니다.');
-            stompClient?.publish({
-                destination: '/app/meetings/1/chat',
-                body: JSON.stringify({}),
+            stomp.subscribe("/topic/meetings/1/chat", ({body}) => {
+                const message = JSON.parse(body);
+
+                if (currentUser?.name === message.sender_name) {
+                    return;
+                }
+
+                setChatHistory(prevHistory => [...prevHistory, {
+                    sender: message.sender_name,
+                    message: message.text,
+                    timestamp: formatTimestamp(message.created_at),
+                }]);
+            });
+
+            stomp.subscribe("/topic/meetings/1/update", () => {
+
             });
         };
-    }, []);
 
-    useEffect(() => {
-        // chat 이벤트 수신, history 저장
-        socket.on('chat message', (msg: { sender: string, message: string, timestamp: string }) => {
-            setChatHistory(prevHistory => [...prevHistory, msg]);
-        });
+        setStompClient(stomp);
 
         return () => {
-            socket.off('chat message');
-        };
-    }, []);
+            if (stompClient) {
+                stompClient.deactivate();
+            }
+          };
+
+    }, [currentUser]);
+
 
     useEffect(() => {
         // 타이핑 상태 관리
         const typingTimeout = setTimeout(() => {
             if (isTyping) {
-                socket.emit('stop typing');
                 setIsTyping(false);
             }
         }, 500);
@@ -68,7 +100,6 @@ const ChatComponent: React.FC = () => {
         // 메시지 입력, 타이핑 상태 표시
         setMessage(e.target.value);
         if (!isTyping) {
-            socket.emit('start typing');
             setIsTyping(true);
         }
     };
@@ -83,15 +114,32 @@ const ChatComponent: React.FC = () => {
     const sendMessage = () => {
         if (message !== '') {
             const messageObject = {
-                sender: 'User', // 로그인 데이터 받아와서 유저 닉네임으로 대체하기
-                message: message,
+                sender: currentUser?.name ?? 'gd',
+                message,
                 timestamp: new Date().toLocaleTimeString(),
             };
-            socket.emit('chat message', messageObject);
+            stompClient?.publish({
+                destination: "/app/meetings/1/chat",
+                body: JSON.stringify({
+                    text: message
+                })
+            })
+            // socket.emit('chat message', messageObject);
             setChatHistory(prevHistory => [...prevHistory, messageObject]);
             setMessage('');
             setIsTyping(false);
         }
+    };
+
+    const addHours = (date: Date, hours: number) => {
+        date.setHours(date.getHours() + hours);
+        return date;
+    };
+    
+    const formatTimestamp = (timestamp: string) => {
+        const date = new Date(timestamp);
+        const kstDate = addHours(date, -9); // UTC-9
+        return kstDate.toLocaleTimeString();
     };
 
     return (
@@ -99,7 +147,7 @@ const ChatComponent: React.FC = () => {
             <div className={styles.chatContainer}>
                 <ul className={styles.messages}>
                     {chatHistory.map((msg, index) => (
-                        <li key={index} className={styles.messageItem}>
+                        <li key={index} className={`${styles.messageItem} ${msg.sender === currentUser?.name ? styles.myMessage : ''}`}>
                             <div className={styles.messageHeader}>
                                 <span className={styles.sender}>{msg.sender}</span>
                                 <span className={styles.timestamp}>{msg.timestamp}</span>

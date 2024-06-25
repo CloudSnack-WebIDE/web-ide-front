@@ -12,6 +12,21 @@ import userDummy from '../../dummy/user.dummy';
 import axios from 'axios';
 import { SERVER_URL } from '../../constant/constant';
 
+axios.interceptors.request.use(function (config) {
+    const accessToken = sessionStorage.getItem('access_token') || localStorage.getItem('access_token');
+    const refreshToken = sessionStorage.getItem('refresh_token') || localStorage.getItem('refresh_token');
+
+    if (accessToken) {
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    if (refreshToken) {
+        config.headers['x-refresh-token'] = refreshToken;
+    }
+    return config;
+}, function (error) {
+    return Promise.reject(error);
+});
+
 type MeetingsType = { id: string; name: string };
 let bufferSize: number = 0;
 let buffer: any[] = [];
@@ -35,7 +50,7 @@ const Projects: React.FC = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data } = await axios.get(`${SERVER_URL}/api/projects?userId=1`);
+        const { data } = await axios.get(`${SERVER_URL}/api/user/projects`);
         setProjects(data.data);
       } catch (error) {
         console.error('Failed to fetch projects:', error);
@@ -75,10 +90,10 @@ const Projects: React.FC = () => {
           {roomId && lang}
         </StyledProjectsGridLeft>
 
-        <div className="dashboard-grid-right chat-component-wrapper">
+        {/* <div className="dashboard-grid-right chat-component-wrapper">
           <ParticipantList usersOnline={userDummy} />
           <ChatRoomList chatrooms={meetings} />
-        </div>
+        </div> */}
       </div>
     </StyledProjects>
   );

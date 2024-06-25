@@ -24,7 +24,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
     return (
         <StyledProjectList className="project-list">
             {projects.map((project, key) => (
-                <Link to={`/room/${project.id}/php`}
+                <Link to={`/room/${project.id}/python`}
                     key={key}
                     style={style}>
                     <StyledCircle/>

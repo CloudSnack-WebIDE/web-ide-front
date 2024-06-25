@@ -75,6 +75,33 @@
     color: black;
 }
 
+.messageItem.myMessage {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.messageItem.myMessage .messageHeader {
+    justify-content: flex-end;
+    display: flex;
+    width: 100%;
+}
+
+.messageItem.myMessage .sender {
+    background-color: #0C081E;
+    color: white;
+}
+
+.messageItem.myMessage .timestamp {
+    color: gray;
+}
+
+.messageItem.myMessage p {
+    background-color: #f1f1f1;
+    color: black;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
 .messageForm {
     display: flex;
     align-items: center;

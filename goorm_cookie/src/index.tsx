@@ -18,7 +18,8 @@ axios.defaults.withCredentials = true;
 const PrivateRoute: React.FC<{ element: React.ReactElement }> = ({
   element,
 }) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, } = useAuth();
+  
   return isLoggedIn ? element : <Navigate to="/login" />;
 };
 

@@ -3,6 +3,7 @@ import { EmailIcon, IdIcon, PasswordIcon } from '../../assets';
 import './styles.css';
 import "../../styles/commonStyles.css";
 import { Link, useNavigate } from 'react-router-dom';
+import { SERVER_URL } from 'constant/constant';
 
 const Register: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -38,7 +39,7 @@ const Register: React.FC = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/sign-up', {
+            const response = await fetch(SERVER_URL +'/api/sign-up', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
