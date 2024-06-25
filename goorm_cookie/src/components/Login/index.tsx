@@ -7,7 +7,7 @@ import { auth, provider } from '../../firebaseAuth';
 import './styles.css';
 import '../../styles/commonStyles.css';
 import api from '../../api/api';
-import { SERVER_URL } from 'constant/constant';
+import { SERVER_URL } from '../../constant/constant';
 
 // 카카오 API 응답 타입 정의
 interface KakaoAuthResponse {

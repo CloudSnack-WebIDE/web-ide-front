@@ -3,7 +3,7 @@ import { EmailIcon, IdIcon, PasswordIcon } from '../../assets';
 import './styles.css';
 import "../../styles/commonStyles.css";
 import { Link, useNavigate } from 'react-router-dom';
-import { SERVER_URL } from 'constant/constant';
+import { SERVER_URL } from '../../constant/constant';
 
 const Register: React.FC = () => {
     const [username, setUsername] = useState('');
